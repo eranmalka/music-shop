@@ -7,26 +7,14 @@ var router = express.Router();
 
 console.log(validator);
 
-router.get('/', function(req, res) {
-    console.log('im in category get method');
-    res.end('');
-});
+router.get('/', controller.getCategories);
 
-router.post('/', validator.post , function(req, res) {
-    console.log('im in category post method');
-    res.end('');
-});
+router.post('/', validator.post , controller.createCategory);
 
-router.delete('/:id', function(req, res) {
-    console.log('im in category delete method');
-    res.end('');
-});
+router.delete('/:id', validator.load, controller.deleteCategory);
 
-router.put('/:id', function(req, res) {
-    console.log('im in category update method');
-    res.end('');
-});
+router.put('/:id', validator.load, validator.put, controller.updateCategory);
 
-/*router.params('id', controller.load);*/
+router.param('id', controller.load);
 
 module.exports = router;
